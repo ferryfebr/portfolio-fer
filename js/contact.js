@@ -6,6 +6,14 @@ function toggleDrawer() {
   if (!drawer) return;
   const isOpen = drawer.classList.toggle('open');
   drawer.setAttribute('aria-hidden', !isOpen);
+
+  /* Sembunyikan UI music player saat modal (drawer) kebuka,
+     tampilkan lagi saat tertutup — berlaku semua viewport. */
+  const player = document.querySelector('.music-player');
+  if (player) {
+    if (isOpen) player.classList.remove('show');
+    else player.classList.add('show');
+  }
 }
 
 window.addEventListener('load', () => {

@@ -29,11 +29,14 @@
         var w = window.innerWidth;
         var zoom;
         if (w >= 1280) {
-          zoom = w / 1280;            /* desktop: acuan 1280px */
+          zoom = w / 1280;            /* desktop: acuan 1280px, scale-to-fit */
+        } else if (w <= 640) {
+          /* mobile: zoom DI-KUNCI (fixed) biar tampilan SAMA di semua hp —
+             persis seperti iPhone 14 Pro sekarang. Branch mobile tadinya
+             masuk ke tablet (w/820); kita kunci di 393/820. */
+          zoom = 393 / 820;
         } else if (w <= 1024) {
           zoom = w / 820;             /* tablet: acuan 820px (iPad default), scale-to-fit */
-        } else if (w <= 640) {
-          zoom = w / 390;             /* mobile: acuan 390px (iPhone), scale-to-fit */
         } else {
           zoom = 1;                   /* gap 640-1024: layout tablet native */
         }
