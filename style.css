@@ -1,0 +1,160 @@
+/* ============================================================
+   Design Tokens — lihat design.md
+   ============================================================ */
+:root {
+  /* Typography */
+  --font-primary: 'Space Grotesk', sans-serif;
+  --fw-medium: 500;
+  --fw-bold: 700;
+
+  --fs-hero: clamp(2.5rem, 6vw, 4.8rem);   /* cap 76.8px = nilai pas di 1280px */
+  --fs-subheadline: clamp(1.75rem, 2.5vw, 2rem); /* cap 32px = nilai pas di 1280px */
+  --fs-bubble: 20px;
+  --fs-body: 17px;
+
+  /* Colors */
+  --color-bg: #0D0D0D;
+  --color-accent-green: #22C55E;
+  --color-white: #FFFFFF;
+  --color-text-secondary: rgba(255, 255, 255, 0.5);
+  --color-card-bg: #1A1A1A;
+  --color-border-subtle: rgba(255, 255, 255, 0.1);
+
+  /* Border Radius */
+  --radius-navbar: 50px;
+  --radius-button: 10px;
+
+  /* Scaling canvas factor (di-set JS: innerWidth / 1280) */
+  --zoom: 1;
+}
+
+/* ============================================================
+   Reset & Base
+   ============================================================ */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-primary);
+  font-weight: var(--fw-medium);
+  font-size: var(--fs-body);
+  color: var(--color-white);
+  background-color: var(--color-bg);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  background: none;
+  color: inherit;
+}
+
+/* ============================================================
+   Layout Container — kunci lebar ke 1280px (laptop acuan)
+   Layar lebih besar tampil identik & ter-centered.
+   ============================================================ */
+main {
+  width: 1280px;
+  margin: 0 auto;
+}
+
+/* ============================================================
+   Custom Cursor
+   ============================================================ */
+* {
+  cursor: none !important;
+}
+
+.custom-cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 44px;
+  height: 44px;
+  pointer-events: none;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: translate(-50%, -50%);
+  will-change: transform;
+}
+
+.custom-cursor img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  transform-origin: center;
+  transition: transform 0.15s ease-out;
+}
+
+/* ============================================================
+   Background Asset (fixed)
+   ============================================================ */
+.bg-fixed {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background-image: url('asset/bg.webp');
+  background-size: cover;
+  background-position: center;
+  /* fallback solid color jika asset belum ada */
+  background-color: var(--color-bg);
+}
+
+/* ============================================================
+   Tablet (<=1024): canvas FIXED 820px, scale-to-fit via zoom
+   (mirip desktop yang canvas 1280). Semua section ikut canvas
+   820, bukan viewport, biar proporsi sama di semua dimensi tablet.
+   ============================================================ */
+@media (max-width: 1024px) {
+  main {
+    width: 820px;
+  }
+  .navbar {
+    left: 50%;
+    right: auto;
+    transform: translateX(-50%);
+    width: 820px;
+  }
+}
+
+/* Mobile (<=640): canvas FIXED 390px, scale-to-fit via zoom (sama konsep desktop/tablet) */
+@media (max-width: 640px) {
+  main {
+    width: 390px;
+  }
+  .navbar {
+    left: 50%;
+    right: auto;
+    transform: translateX(-50%);
+    width: 390px;
+  }
+  /* overflow-x: clip (bukan hidden) biar CSS sticky work section gak rusak */
+  body {
+    overflow-x: clip;
+  }
+}

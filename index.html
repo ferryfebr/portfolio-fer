@@ -1,0 +1,446 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ferry Febriansyah &mdash; Portfolio</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="css/navbar.css">
+  <link rel="stylesheet" href="css/hero.css">
+  <link rel="stylesheet" href="css/skills.css">
+  <link rel="stylesheet" href="css/services.css">
+  <link rel="stylesheet" href="css/work.css">
+  <link rel="stylesheet" href="css/contact.css">
+  <link rel="stylesheet" href="css/loading.css">
+  <link rel="stylesheet" href="css/player.css">
+  <link rel="stylesheet" href="css/rotate.css">
+  <link rel="stylesheet" href="css/bottom-nav.css">
+  <link rel="stylesheet" href="css/tablet-tap.css">
+
+  <script>
+    /* Scaling canvas: desktop acuan 1280px, tablet acuan 820px (scale-to-fit) */
+    (function () {
+      function applyScale() {
+        var w = window.innerWidth;
+        var zoom;
+        if (w >= 1280) {
+          zoom = w / 1280;            /* desktop: acuan 1280px */
+        } else if (w <= 1024) {
+          zoom = w / 820;             /* tablet: acuan 820px (iPad default), scale-to-fit */
+        } else if (w <= 640) {
+          zoom = w / 390;             /* mobile: acuan 390px (iPhone), scale-to-fit */
+        } else {
+          zoom = 1;                   /* gap 640-1024: layout tablet native */
+        }
+        var root = document.documentElement;
+        root.style.setProperty('--zoom', zoom);
+        root.style.zoom = zoom;
+        if (typeof ScrollTrigger !== 'undefined') ScrollTrigger.refresh();
+      }
+      window.addEventListener('resize', applyScale);
+      window.addEventListener('DOMContentLoaded', applyScale);
+      applyScale();
+    })();
+  </script>
+</head>
+<body class="loading-lock">
+
+  <!-- Loading Screen -->
+  <div class="loading-screen" id="loadingScreen">
+    <div class="loading-inner">
+      <p class="loading-percent" id="loadingPercent">0%</p>
+      <div class="loading-bar" aria-hidden="true">
+        <div class="loading-bar-fill" id="loadingBarFill"></div>
+      </div>
+      <button class="go-to-web-btn" id="goToWebBtn">Go to Web</button>
+    </div>
+  </div>
+
+  <!-- Music Player -->
+  <div class="music-player" aria-label="Music player">
+    <button class="player-play-pause" id="playPauseBtn" aria-label="Play or pause music">
+      <span class="player-icon icon-play" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="currentColor">
+          <path d="M8 5v14l11-7z"></path>
+        </svg>
+      </span>
+      <span class="player-icon icon-pause" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="currentColor">
+          <path d="M6 5h4v14H6zM14 5h4v14h-4z"></path>
+        </svg>
+      </span>
+    </button>
+    <span class="player-label">Kabar Bahagia &mdash; Rumahsakit</span>
+  </div>
+
+  <div class="bg-fixed" aria-hidden="true"></div>
+
+  <main>
+    <!-- Navbar -->
+    <header class="navbar">
+      <div class="navbar-inner">
+        <div class="nav-pill nav-badge">
+          <span class="status-dot" aria-hidden="true"></span>
+          Available for New Project
+        </div>
+        <a href="#work" class="nav-pill">Work <span class="nav-count">[10]</span></a>
+        <a href="#services" class="nav-pill">Services <span class="nav-count">[4]</span></a>
+        <a href="#skills" class="nav-pill">Experience <span class="nav-count">[2y+]</span></a>
+        <a href="#contact" class="nav-pill nav-contact-btn">Contact Me <span class="arrow-icon" aria-hidden="true">&#8599;</span></a>
+      </div>
+    </header>
+    <!-- Hero -->
+    <section class="hero">
+      <div class="hero-inner">
+        <div class="hero-chat" aria-hidden="true">
+          <div class="chat-bubble chat-bubble-pop chat-bubble-1">UI/UX Designer</div>
+          <div class="chat-bubble chat-bubble-pop chat-bubble-2">Web Developer</div>
+        </div>
+
+        <h1 class="hero-headline">
+          <span class="headline-static">Hi there, I&rsquo;m</span>
+          <span class="text-swap is-green">Ferry</span>
+        </h1>
+
+        <p class="subheadline">Designing and building products, end-to-end.</p>
+
+        <div class="hero-cta">
+          <p class="hero-cta-text">Let's create something great together.</p>
+          <a href="#contact" class="hero-cta-btn">
+            Let's Talk
+            <span class="hero-cta-arrow" aria-hidden="true">&rarr;</span>
+          </a>
+        </div>
+
+        <div class="hero-person">
+          <img src="asset/orang.webp" alt="Ferry Febriansyah" class="hero-person-img">
+        </div>
+      </div>
+    </section>
+    <!-- Skills & Tools -->
+    <section id="skills" class="skills-section">
+      <div class="skills-inner">
+        <h2 class="skills-title">Skills &amp; Tools</h2>
+        <div class="skills-content">
+        <div class="skills-grid-wrap">
+          <div class="skills-grid">
+            <button class="flip-card" type="button">
+              <div class="flip-card-inner">
+                <div class="flip-front"><img src="asset/icon-tools/HTML5.png" alt="HTML5"></div>
+                <div class="flip-back">HTML5</div>
+              </div>
+            </button>
+            <button class="flip-card" type="button">
+              <div class="flip-card-inner">
+                <div class="flip-front"><img src="asset/icon-tools/css-3.png" alt="CSS3"></div>
+                <div class="flip-back">CSS3</div>
+              </div>
+            </button>
+            <button class="flip-card" type="button">
+              <div class="flip-card-inner">
+                <div class="flip-front"><img src="asset/icon-tools/JavaScript.png" alt="JavaScript"></div>
+                <div class="flip-back">JavaScript</div>
+              </div>
+            </button>
+            <button class="flip-card" type="button">
+              <div class="flip-card-inner">
+                <div class="flip-front"><img src="asset/icon-tools/React.png" alt="React"></div>
+                <div class="flip-back">React</div>
+              </div>
+            </button>
+            <button class="flip-card" type="button">
+              <div class="flip-card-inner">
+                <div class="flip-front"><img src="asset/icon-tools/Node.js.png" alt="Node.js"></div>
+                <div class="flip-back">Node.js</div>
+              </div>
+            </button>
+            <button class="flip-card" type="button">
+              <div class="flip-card-inner">
+                <div class="flip-front"><img src="asset/icon-tools/Laravel.png" alt="Laravel"></div>
+                <div class="flip-back">Laravel</div>
+              </div>
+            </button>
+            <button class="flip-card" type="button">
+              <div class="flip-card-inner">
+                <div class="flip-front"><img src="asset/icon-tools/MySQL.png" alt="MySQL"></div>
+                <div class="flip-back">MySQL</div>
+              </div>
+            </button>
+            <button class="flip-card" type="button">
+              <div class="flip-card-inner">
+                <div class="flip-front"><img src="asset/icon-tools/Figma.png" alt="Figma"></div>
+                <div class="flip-back">Figma</div>
+              </div>
+            </button>
+            <button class="flip-card" type="button">
+              <div class="flip-card-inner">
+                <div class="flip-front"><img src="asset/icon-tools/GitHub.png" alt="GitHub"></div>
+                <div class="flip-back">GitHub</div>
+              </div>
+            </button>
+            <button class="flip-card" type="button">
+              <div class="flip-card-inner">
+                <div class="flip-front"><img src="asset/icon-tools/bootstrap.png" alt="Bootstrap"></div>
+                <div class="flip-back">Bootstrap</div>
+              </div>
+            </button>
+          </div>
+        </div>
+
+        <div class="skills-text">
+          <p class="skills-intro">2+ years <span class="skills-highlight">designing and building things on the web</span>, still learning something new with every project. <br><br>I just like making things that work and hopefully, things people enjoy using.</p>
+          <a href="#work" class="skills-cta-btn">
+            See The Work
+            <span class="skills-cta-arrow" aria-hidden="true">&rarr;</span>
+          </a>
+        </div>
+      </div>
+    </section>
+    <!-- Services -->
+    <section id="services" class="services-section">
+      <div class="services-inner">
+        <div class="services-accordion">
+          <div class="accordion-item active">
+            <div class="accordion-head">
+              <span class="accordion-index">[1]</span>
+              <span class="accordion-name">Website Development</span>
+              <span class="accordion-plus" aria-hidden="true">+</span>
+            </div>
+            <div class="accordion-body">
+              <p class="accordion-desc">Every site I build starts with clean, maintainable code and the right modern tools for the job. From a simple landing page to a full multi-page platform, I keep things structured, fast, and ready to grow.</p>
+              <div class="service-image-placeholder"><img src="asset/services/web-development.webp" alt="Website Development" decoding="async" loading="lazy"></div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <div class="accordion-head">
+              <span class="accordion-index">[2]</span>
+              <span class="accordion-name">UI/UX Design</span>
+              <span class="accordion-plus" aria-hidden="true">+</span>
+            </div>
+            <div class="accordion-body">
+              <p class="accordion-desc">Before any code is written, I map out how the product should feel &mdash; the flow, the hierarchy, the small details that make an interface intuitive. Good design isn't just about looking clean; it's about making every interaction feel effortless.</p>
+              <div class="service-image-placeholder"><img src="asset/services/uiux.webp" alt="UI/UX Design" decoding="async" loading="lazy"></div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <div class="accordion-head">
+              <span class="accordion-index">[3]</span>
+              <span class="accordion-name">Full Stack Development</span>
+              <span class="accordion-plus" aria-hidden="true">+</span>
+            </div>
+            <div class="accordion-body">
+              <p class="accordion-desc">I handle both sides of the product &mdash; from building solid backend logic and databases, to crafting the interface users actually interact with. This means fewer handoffs, faster iterations, and a product that feels cohesive from end to end.</p>
+              <div class="service-image-placeholder"><img src="asset/services/fullstack.webp" alt="Full Stack Development" decoding="async" loading="lazy"></div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <div class="accordion-head">
+              <span class="accordion-index">[4]</span>
+              <span class="accordion-name">Website Maintenance</span>
+              <span class="accordion-plus" aria-hidden="true">+</span>
+            </div>
+            <div class="accordion-body">
+              <p class="accordion-desc">A website doesn't stop needing attention after launch. I help keep things running smoothly &mdash; fixing bugs, improving load speed, updating dependencies, and making sure the site stays secure and performant as it grows.</p>
+              <div class="service-image-placeholder"><img src="asset/services/webmaintenance.webp" alt="Website Maintenance" decoding="async" loading="lazy"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+        <!-- Work -->
+    <div class="work-stack-pin">
+    <section id="work" class="work-stack-section">
+      <div class="work-card" data-index="1" style="background-color: #3D5AFE;">
+        <div class="work-card-index">[1]</div>
+        <h2 class="work-card-title">Creative Creed My</h2>
+        <p class="work-card-desc">I build every website with clean, maintainable code and the right modern tools for the job. From a simple landing page to a full multi-page platform, everything stays structured, fast, and ready to grow.</p>
+        <div class="work-card-image"><img src="asset/images/work-placeholder.jpg" alt=""></div>
+      </div>
+      <div class="work-card" data-index="2" style="background-color: #FF8A1E;">
+        <div class="work-card-index">[2]</div>
+        <h2 class="work-card-title">Commerce Platform</h2>
+        <p class="work-card-desc">A full online store with product catalog, cart, and checkout. Built around speed, clean architecture, and a smooth shopping experience from first visit to final purchase.</p>
+        <div class="work-card-image"><img src="asset/images/work-placeholder.jpg" alt=""></div>
+      </div>
+      <div class="work-card" data-index="3" style="background-color: #AEB6C2;">
+        <div class="work-card-index">[3]</div>
+        <h2 class="work-card-title">Portfolio Experience</h2>
+        <p class="work-card-desc">A personal site that balances bold visuals with readable content. The focus is a clear story, strong typography, and interactions that feel deliberate without getting in the way.</p>
+        <div class="work-card-image"><img src="asset/images/work-placeholder.jpg" alt=""></div>
+      </div>
+      <div class="work-card" data-index="4" style="background-color: #22C55E;">
+        <div class="work-card-index">[4]</div>
+        <h2 class="work-card-title">SaaS Dashboard</h2>
+        <p class="work-card-desc">A data-heavy dashboard turned into something easy to scan. Real-time charts, filters, and a layout that keeps the most important metrics always one glance away.</p>
+        <div class="work-card-image"><img src="asset/images/work-placeholder.jpg" alt=""></div>
+      </div>
+      <div class="work-card" data-index="5" style="background-color: #502D55;">
+        <div class="work-card-index">[5]</div>
+        <h2 class="work-card-title">Travel App</h2>
+        <p class="work-card-desc">A travel companion focused on planning, booking, and discovery. The interface is built to feel calm and trustworthy while packing a lot of information into each screen.</p>
+        <div class="work-card-image"><img src="asset/images/work-placeholder.jpg" alt=""></div>
+      </div>
+      <div class="work-card" data-index="6" style="background-color: #F4F8e9;">
+        <div class="work-card-index">[6]</div>
+        <h2 class="work-card-title">Restaurant Landing</h2>
+        <p class="work-card-desc">A bold landing page for a restaurant that puts the food first. Big imagery, warm typography, and a reservation flow that takes just a few taps.</p>
+        <div class="work-card-image"><img src="asset/images/work-placeholder.jpg" alt=""></div>
+      </div>
+      <div class="work-card" data-index="7" style="background-color: #3965FA;">
+        <div class="work-card-index">[7]</div>
+        <h2 class="work-card-title">Booking System</h2>
+        <p class="work-card-desc">An appointment booking system with availability management, reminders, and a simple admin panel. Reliability and clear status feedback were the top priorities.</p>
+        <div class="work-card-image"><img src="asset/images/work-placeholder.jpg" alt=""></div>
+      </div>
+      <!-- <div class="work-card" data-index="8" style="background-color: #22C55E;">
+        <div class="work-card-index">[8]</div>
+        <h2 class="work-card-title">E-Learning Portal</h2>
+        <p class="work-card-desc">A course platform with progress tracking, lessons, and quizzes. Designed to keep learners motivated through a clean, distraction-free reading experience.</p>
+        <div class="work-card-image"><img src="asset/images/work-placeholder.jpg" alt=""></div>
+      </div>
+      <div class="work-card" data-index="9" style="background-color: #1A1A1A;">
+        <div class="work-card-index">[9]</div>
+        <h2 class="work-card-title">Agency Website</h2>
+        <p class="work-card-desc">A portfolio site for a creative agency that lets the work speak. Fast page loads, generous whitespace, and a contact path that feels human from the first click.</p>
+        <div class="work-card-image"><img src="asset/images/work-placeholder.jpg" alt=""></div>
+      </div>
+      <div class="work-card" data-index="10" style="background-color: #22C55E;">
+        <div class="work-card-index">[10]</div>
+        <h2 class="work-card-title">Mobile UI Kit</h2>
+        <p class="work-card-desc">A flexible UI kit covering navigation, forms, and feedback states. Reusable components documented so a product team can ship screens faster and stay consistent.</p>
+        <div class="work-card-image"><img src="asset/images/work-placeholder.jpg" alt=""></div>
+      </div> -->
+    </section>
+    </div><!-- /.work-stack-pin -->
+    <!-- Contact / Footer -->
+    <section id="contact" class="contact-section">
+      <div class="contact-accent" aria-hidden="true"></div>
+      <div class="contact-inner">
+        <p class="contact-intro">Turning early ideas into trusted, fast-moving products that help ambitious teams grow.</p>
+        <a href="#" class="get-in-touch-btn" id="getInTouch">GET-IN TOUCH</a>
+        <div class="contact-pills">
+          <a href="mailto:ferryfebriansyah73@gmail.com" class="contact-pill">
+            <span class="contact-pill-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="4" width="20" height="16" rx="2"></rect>
+                <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+              </svg>
+            </span>
+            <span class="contact-pill-label">ferryfebriansyah73@gmail.com</span>
+          </a>
+          <a href="https://www.instagram.com/feryfbrsyah" target="_blank" rel="noopener" class="contact-pill">
+            <span class="contact-pill-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="2" width="20" height="20" rx="5"></rect>
+                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+              </svg>
+            </span>
+            <span class="contact-pill-label">@feryfbrsyah</span>
+          </a>
+          <a href="https://wa.me/6281335535072" target="_blank" rel="noopener" class="contact-pill">
+            <span class="contact-pill-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"></path>
+              </svg>
+            </span>
+            <span class="contact-pill-label">+62 813-3553-5072</span>
+          </a>
+        </div>
+      </div>
+      <p class="contact-copyright">@FERRY FEBRIANSYAH, 2026</p>
+    </section>
+
+    <aside class="drawer" id="drawer" aria-hidden="true">
+      <button class="drawer-close" id="drawerClose" aria-label="Close">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M18 6 6 18"></path>
+          <path d="m6 6 12 12"></path>
+        </svg>
+      </button>
+      <div class="drawer-inner">
+        <div class="drawer-badge">
+          <span class="status-dot" aria-hidden="true"></span>
+          AVAILABLE FOR NEW PROJECT
+        </div>
+        <h2 class="drawer-title">Let&rsquo;s collaborate!</h2>
+        <p class="drawer-desc">Tell me what you&rsquo;re working on &mdash; a website, a product, or just an idea you&rsquo;re still shaping. I&rsquo;ll get back to you within 2 days.</p>
+        <form class="drawer-form" id="drawerForm">
+          <label class="drawer-label" for="drawer-name">YOUR NAME</label>
+          <input class="drawer-input" id="drawer-name" type="text" placeholder="Your name">
+          <label class="drawer-label" for="drawer-email">EMAIL</label>
+          <input class="drawer-input" id="drawer-email" type="email" placeholder="you@example.com">
+          <label class="drawer-label" for="drawer-message">WHAT ARE WE BUILDING?</label>
+          <textarea class="drawer-textarea" id="drawer-message" rows="3" placeholder="Tell me about your project..."></textarea>
+          <button type="submit" class="drawer-submit">Let&rsquo;s Talk <span class="drawer-submit-icon" aria-hidden="true">&#9993;</span></button>
+        </form>
+      </div>
+    </aside>
+
+  </main>
+
+  <div class="custom-cursor" id="customCursor"><img src="asset/cursor.webp" alt=""></div>
+
+  <!-- Rotate prompt (tablet portrait only) -->
+  <div class="rotate-overlay" aria-hidden="true">
+    <div class="rotate-overlay-inner">
+      <div class="rotate-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24">
+          <rect x="7" y="2" width="10" height="20" rx="2"></rect>
+          <line x1="11" y1="18.5" x2="13" y2="18.5"></line>
+          <path d="M2 12a10 10 0 0 1 10-10"></path>
+          <polyline points="2 5 2 9 6 9"></polyline>
+        </svg>
+      </div>
+      <p class="rotate-title">Putar perangkat ke mode landscape</p>
+      <p class="rotate-sub">Web ini nyaman dibuka secara mendatar.</p>
+    </div>
+  </div>
+
+  <script>
+    if (location.search.indexOf('rotate=1') !== -1) {
+      var ro = document.querySelector('.rotate-overlay');
+      if (ro) ro.classList.add('force-show');
+    }
+  </script>
+
+  <!-- Bottom Navigation (mobile) -->
+  <nav class="bottom-nav" aria-label="Navigasi bawah">
+    <a href="#home" class="active">
+      <svg viewBox="0 0 24 24"><path d="M3 11l9-8 9 8"/><path d="M5 10v9a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-9"/></svg>
+      <span>Home</span>
+    </a>
+    <a href="#skills">
+      <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21v-1a6 6 0 0 1 6-6h4a6 6 0 0 1 6 6v1"/></svg>
+      <span>About</span>
+    </a>
+    <a href="#work">
+      <svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+      <span>Project</span>
+    </a>
+    <a href="#contact">
+      <svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+      <span>Contact</span>
+    </a>
+  </nav>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="script.js"></script>
+  <script src="js/navbar.js"></script>
+  <script src="js/hero.js"></script>
+  <script src="js/skills.js"></script>
+  <script src="js/services.js"></script>
+  <script src="js/work.js"></script>
+  <script src="js/contact.js"></script>
+  <script src="js/cursor.js"></script>
+  <script src="js/loading.js"></script>
+  <script src="js/tablet-tap.js"></script>
+  <script src="js/bottom-nav.js"></script>
+</body>
+</html>

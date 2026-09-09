@@ -1,0 +1,315 @@
+/* ============================================================
+   Skills & Tools
+   ============================================================ */
+.skills-section {
+  min-height: calc(100vh / var(--zoom, 1));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 120px 24px;
+}
+
+.skills-inner {
+  width: 100%;
+  max-width: 1100px;
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+}
+
+.skills-title {
+  font-size: var(--fs-subheadline);
+  font-weight: var(--fw-medium);
+  color: var(--color-accent-green);
+}
+
+.skills-content {
+  display: flex;
+  align-items: flex-start;
+  gap: 80px;
+}
+
+/* Kolom kiri — grid icon kompak */
+.skills-grid-wrap {
+  flex-shrink: 0;
+  max-width: 412px;
+  margin-top: -150px;
+  align-self: center;
+}
+
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 72px);
+  gap: 13px;
+  width: max-content;
+}
+
+/* Kolom kanan — teks + button */
+.skills-text {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 24px;
+  margin-top: -95px;
+}
+
+.skills-intro {
+  max-width: 600px;
+  font-size: var(--fs-subheadline);
+  font-weight: var(--fw-medium);
+  color: var(--color-white);
+}
+
+.skills-intro .char {
+  display: inline;
+}
+
+.skills-highlight {
+  color: var(--color-accent-green);
+}
+
+.skills-cta-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 24px;
+  background-color: var(--color-accent-green);
+  color: var(--color-white);
+  font-weight: var(--fw-bold);
+  font-size: var(--fs-body);
+  border-radius: var(--radius-button);
+  transition: transform 0.25s ease;
+  margin-top: 20px;
+}
+
+.skills-cta-btn:hover {
+  transform: scale(1.05);
+}
+
+.skills-cta-arrow {
+  font-size: 1.2em;
+  line-height: 1;
+  display: inline-block;
+  transition: transform 0.2s ease;
+}
+
+.skills-cta-btn:hover .skills-cta-arrow {
+  transform: translateX(4px);
+}
+
+/* ============================================================
+   Flip Card
+   ============================================================ */
+.flip-card {
+  perspective: 1000px;
+  cursor: pointer;
+  width: 72px;
+  height: 72px;
+}
+
+.flip-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  /* transisi dikendalikan GSAP (flipCard) biar nggak bentrok dengan CSS */
+  transform-style: preserve-3d;
+  transform-origin: center center;
+  /* promote ke GPU layer biar flip smooth (nggak repaint tiap frame) */
+  will-change: transform;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+.flip-front,
+.flip-back {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  /* layer sendiri biar gak kelap-kelip pas rotate */
+  will-change: transform;
+  transform: translateZ(0);
+  border-radius: var(--radius-button);
+  background-color: #ffffff;
+  border: 1px solid var(--color-border-subtle);
+}
+
+.flip-front img {
+  width: 39px;
+  height: 39px;
+  object-fit: contain;
+}
+
+.flip-back {
+  transform: translateZ(0) rotateY(180deg);
+  font-size: 12px;
+  font-weight: var(--fw-bold);
+  color: #000000;
+  text-align: center;
+  padding: 4px;
+}
+
+@media (max-width: 1024px) {
+  .skills-section {
+    position: relative;   /* paksa anak absolut nyangkut ke canvas 820, bukan viewport */
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 40px;
+    margin-top: -150px;
+    padding: 64px 24px;
+  }
+  .skills-content {
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+  }
+
+  /* teks skills — tablet (canvas 820, ubah right/top/margin buat geser) */
+  .skills-text {
+    position: relative;   /* biar bisa diatur right/top/left */
+    align-items: center;
+    margin-top: 20px;
+    gap: 0px;
+    max-width: 68.6%;
+    /* contoh: right: 0; top: 0; */
+  }
+  .skills-intro {
+    max-width: 100%;
+    font-size: var(--fs-subheadline);
+    position: relative;   /* biar bisa diatur right/top */
+    right: 0;
+    top: 0;
+    text-align: center;
+    /* ubah right/top di atas buat geser teks intro */
+  }
+  .skills-cta-btn {
+    margin-top: 20px;
+    position: relative;   /* biar bisa diatur right/top */
+    right: 0;
+    top: 0;
+    /* ubah right/top di atas buat geser tombol */
+  }
+  .skills-grid-wrap {
+    width: 100%;           /* paksa lebar penuh canvas 820 biar proporsi potong konsisten */
+    max-width: 100%;
+    margin-top: 10px;
+    overflow: hidden;
+  }
+  /* icon tools: 1 baris penuh, carousel infinite ke kiri (seamless) */
+  .skills-grid {
+    display: flex;
+    flex-wrap: nowrap;
+    width: max-content;
+    gap: 0;
+    transform-style: preserve-3d;   /* jangan flatten biar flip card tetap 3D */
+    animation: skills-marquee 20s linear infinite;
+    -webkit-animation: skills-marquee 20s linear infinite;
+}
+  .skills-grid .flip-card {
+    flex: 0 0 auto;
+    margin-right: 13px;
+  }
+  @keyframes skills-marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+}
+
+/* ============================================================
+   Mobile (<=640px) — canvas 390, scale-to-fit
+   Aturan khusus HP — TIDAK mengubah desktop (1280) & tablet (820).
+   Semua nilai bisa diatur manual di bawah ini.
+   ============================================================ */
+@media (max-width: 640px) {
+  /* Section pembungkus */
+  .skills-section {
+    min-height: auto;          /* lepas paksaan 1 layar penuh */
+    margin-top: -300px;        /* naikkan nilai negatif = lebih naik */
+    padding: 24px 0;           /* horizontal 0 biar baris kartu full-bleed */
+    overflow-x: clip;          /* cegah page geser kiri/kanan */
+    /* gap / justify bisa diatur di sini */
+  }
+
+  /* Kontainer dalam */
+  .skills-inner {
+    gap: 24px;                 /* jarak antar elemen dalam */
+    /* max-width: 100%; */
+  }
+
+  /* Judul "Skills & Tools" */
+  .skills-title {
+    font-size: 20px;           /* ubah ukuran judul */
+    text-align: center;
+    padding: 0 24px;           /* inset biar gak nempel pinggir */
+  }
+
+  /* Konten (grid + teks) */
+  .skills-content {
+    gap: 24px;                 /* jarak grid dengan teks */
+    /* align-items: center; */
+  }
+
+  /* Pembungkus grid icon */
+  .skills-grid-wrap {
+    width: 100%;
+    max-width: 100%;
+    margin-top: 20px;             /* reset margin dari desktop */
+    /* overflow: hidden (dari rule tablet) dipakai untuk clip marquee */
+  }
+
+  /* Grid icon tools (marquee infinite) */
+  .skills-grid {
+    gap: 8px;                 /* jarak antar icon */
+    transform-style: preserve-3d;
+    /* animation: skills-marquee (dari rule tablet) tetap jalan di mobile */
+  }
+
+  /* Kartu icon (flip card) */
+  .flip-card {
+    width: 56px;               /* ubah ukuran kartu */
+    height: 56px;
+  }
+
+  /* Gambar di dalam kartu */
+  .flip-front img {
+    width: 30px;
+    height: 30px;
+  }
+  .flip-back {
+    font-size: 10px;           /* ubah ukuran teks di belakang kartu */
+  }
+
+  /* Kolom teks kanan */
+  .skills-text {
+    align-items: center;       /* center teks di HP */
+    margin-top: 0;             /* reset margin desktop */
+    gap: 16px;
+    padding: 0 24px;           /* inset biar gak nempel pinggir */
+  }
+
+  /* Paragraf intro */
+  .skills-intro {
+    font-size: 18px;           /* ubah ukuran teks */
+    text-align: center;        /* ratakan tengah */
+    max-width: 150%;
+    margin-top: 20px;
+    width: 145%;          
+  }
+
+  /* Tombol CTA "See The Work" */
+  .skills-cta-btn {
+    padding: 12px 20px;        /* ubah padding tombol */
+    font-size: 14px;           /* ubah ukuran font tombol */
+    margin-top: 20px;
+    /* align-self: center; */
+  }
+
+  /* Panah tombol CTA */
+  .skills-cta-arrow {
+    font-size: 1.1em;
+  }
+}

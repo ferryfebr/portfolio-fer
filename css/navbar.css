@@ -1,0 +1,157 @@
+/* ============================================================
+   Navbar
+   ============================================================ */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 50;
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+  margin-top: 10px;
+}
+
+.navbar-inner {
+  display: flex;
+  align-items: center;
+  gap: 50px;
+  padding: 8px 12px;
+}
+
+.nav-pill {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  background-color: var(--color-card-bg);
+  border: 1px solid var(--color-border-subtle);
+  border-radius: var(--radius-navbar);
+  font-size: var(--fs-body);
+  font-weight: var(--fw-medium);
+  color: var(--color-white);
+  white-space: nowrap;
+  transition: color 0.2s ease, background-color 0.2s ease, transform 0.2s ease;
+}
+
+.nav-pill:hover {
+  color: var(--color-accent-green);
+}
+
+.nav-count {
+  color: var(--color-text-secondary);
+}
+
+.status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: var(--color-accent-green);
+  flex-shrink: 0;
+}
+
+.nav-contact-btn {
+  background-color: var(--color-white);
+  color: var(--color-bg);
+  font-weight: var(--fw-bold);
+}
+
+.nav-contact-btn:hover {
+  color: var(--color-bg);
+  background-color: var(--color-white);
+  transform: translateY(-2px);
+}
+
+.arrow-icon {
+  font-size: 1.2em;
+  line-height: 1;
+  display: inline-block;
+  transition: transform 0.2s ease;
+}
+
+.nav-contact-btn:hover .arrow-icon {
+  transform: translate(2px, -2px);   /* geser ke arah panah (atas kanan) */
+}
+
+/* Tablet portrait (~820): tampilkan semua pill, rapihkan */
+@media (max-width: 1024px) {
+  .navbar-inner {
+    gap: 14px;
+    flex-wrap: wrap;
+    justify-content: center;
+    transform: translate(400px, 0px);
+    -webkit-transform: translate(400px, 0px);
+    -moz-transform: translate(400px, 0px);
+    -ms-transform: translate(400px, 0px);
+    -o-transform: translate(400px, 0px);
+}
+
+  .nav-pill {
+    font-size: 14px;
+    padding: 7px 14px;
+  }
+
+  /* break: paksa badge ke baris baru, lebar badge tetap natural */
+  .navbar-inner::before {
+    content: "";
+    flex-basis: 100%;
+    order: 4;
+  }
+
+  .nav-badge {
+    order: 5;
+    margin-top: -10px;
+  }
+
+  /* scroll: baris 1 langsung hilang, badge naik ke atas (tanpa animasi) */
+  .navbar.scrolled .nav-pill:not(.nav-badge) {
+    display: none;
+  }
+
+  .navbar.scrolled .navbar-inner::before {
+    display: none;
+  }
+
+  .navbar.scrolled .nav-badge {
+    order: 0;
+    margin-top: 0;
+  }
+}
+
+/* Mobile (<640): canvas 390, scale-to-fit, posisi bisa diatur */
+@media (max-width: 640px) {
+  .navbar {
+    display: none;
+  }
+  .navbar {
+    left: 50%;
+    right: auto;
+    transform: translateX(-50%);
+    width: 390px;          /* canvas mobile — ubah kalau ref lo beda */
+    padding: 12px;
+    margin-top: 8px;
+  }
+  .navbar-inner {
+    gap: 8px;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 6px 8px;
+    transform: none;       /* reset translate dari tablet */
+    -webkit-transform: none;
+  }
+
+  .nav-badge {
+    display: none;
+  }
+
+  .nav-pill {
+    padding: 6px 12px;
+    font-size: 14px;
+    /* ubah right/top/margin buat geser pill */
+  }
+
+  .nav-contact-btn {
+    /* ubah right/top/margin buat geser tombol contact */
+  }
+}

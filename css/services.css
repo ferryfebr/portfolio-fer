@@ -1,0 +1,283 @@
+/* ============================================================
+   Services
+   ============================================================ */
+.services-section {
+  min-height: calc(100vh / var(--zoom, 1));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 120px 0;
+}
+
+.services-inner {
+  width: 100%;
+}
+
+/* .services-title {
+  font-size: var(--fs-subheadline);
+  font-weight: var(--fw-medium);
+  color: var(--color-white);
+  margin-bottom: 48px;
+} */
+
+/* ============================================================
+   Accordion — Exclusive Hover
+   ============================================================ */
+.services-accordion {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  background: linear-gradient(
+    135deg,
+    rgba(42, 42, 42, 0.75) 0%,
+    rgba(26, 26, 26, 0.85) 50%,
+    rgba(42, 42, 42, 0.75) 100%
+  );
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-top: 1px solid rgba(255, 255, 255, 0.582);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.581);
+}
+
+.accordion-item {
+  max-height: 108px;
+  overflow: hidden;
+  transition: max-height 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: max-height;
+  padding: 24px 32px;
+}
+
+.accordion-item + .accordion-item {
+  border-top: 1px solid rgba(255, 255, 255, 0.581);
+}
+
+.accordion-item.active {
+  max-height: 480px;
+}
+
+.accordion-head {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  height: 60px;
+  cursor: pointer;
+}
+
+.accordion-index {
+  font-weight: var(--fw-bold);
+  color: var(--color-text-secondary);
+}
+
+.accordion-name {
+  font-size: var(--fs-subheadline);
+  font-weight: var(--fw-bold);
+  color: var(--color-white);
+  transition: color 0.2s ease;
+}
+
+.accordion-item.active .accordion-name {
+  color: var(--color-accent-green);
+}
+
+.accordion-plus {
+  margin-left: auto;
+  font-size: var(--fs-subheadline);
+  font-weight: var(--fw-bold);
+  color: var(--color-text-secondary);
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.accordion-item.active .accordion-plus {
+  transform: rotate(45deg);
+  color: var(--color-accent-green);
+}
+
+.accordion-body {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 24px;
+  padding: 0;
+  visibility: hidden;
+  transition: visibility 0s linear 0.2s;
+}
+
+.accordion-item.active .accordion-body {
+  visibility: visible;
+  transition: visibility 0s;
+}
+
+.accordion-desc {
+  max-width: 700px;
+  font-size: var(--fs-body);
+  font-weight: var(--fw-medium);
+  color: var(--color-text-secondary);
+  position: relative;
+  right: -40px;
+}
+
+.service-image-placeholder {
+  position: relative;
+  top: -30px;
+  right: -150px;
+  flex-shrink: 0;
+  width: 250px;
+  height: 150px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  overflow: hidden;
+}
+
+.service-image-placeholder img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.service-image-placeholder:hover img {
+  transform: scale(1.1);
+}
+
+@media (max-width: 1024px) {
+  .services-section {
+    padding: 64px 0;
+    width: 100%;           /* ikut canvas 820 (scale-to-fit), bukan viewport */
+    max-width: 100%;
+    margin-top: -200px;          /* geser ke atas biar nyambung ke section sebelumnya */
+  }
+
+  .services-inner {
+    width: 100%;
+    padding: 0 ;
+  }
+
+  .accordion-item {
+    max-height: 96px;
+    padding: 20px 30px;
+  }
+  .accordion-item.active {
+    max-height: 640px;   /* lebih tinggi, layar sempit butuh ruang */
+  }
+
+  .accordion-head {
+    height: 56px;
+    gap: 12px;
+  }
+
+  .accordion-name {
+    font-size: var(--fs-subheadline);   /* subheadline kepanjangan di layar sempit */
+  }
+  .accordion-plus {
+    font-size: var(--fs-body);
+  }
+
+  .accordion-body {
+    flex-direction: column;      /* desc + gambar jadi vertikal */
+    gap: 16px;
+    align-items: stretch;
+  }
+
+  .accordion-desc {
+    max-width: 95%;
+    right: 0;                    /* reset offset desktop (-40px) */
+    font-size: var(--fs-body);
+  }
+
+  .service-image-placeholder {
+    position: relative;
+    top: 0;
+    right: 0;                    /* reset offset desktop (-150px) */
+              /* gambar di-center, gak stretch */
+    width: 100%;
+    max-width: 320px;            /* batas biar gak kegedean di tablet */
+    height: auto;
+    aspect-ratio: 16 / 9;        /* proporsi rapi */
+    margin-top: 8px;
+  }
+}
+
+/* ============================================================
+   Mobile (<=640px) — canvas 390, scale-to-fit
+   Aturan khusus HP — TIDAK mengubah desktop (1280) & tablet (820).
+   Semua nilai bisa diatur manual di bawah ini.
+   ============================================================ */
+@media (max-width: 640px) {
+  /* Section pembungkus */
+  .services-section {
+    padding: 0px 0;            /* ubah jarak atas/bawah */
+    margin-top: -200px;         /* geser ke atas biar nyambung section sebelumnya */
+    justify-content: flex-start; /* nempel kiri: lebar nambah ke kanan, kiri nggak kepotong */
+    /* min-height: auto; */      /* aktifkan kalau mau lepas 1 layar penuh */
+    
+  }
+
+  .services-inner {
+    width: 100%;
+    margin: 0;
+    padding: 0;                 /* full lebar kiri-kanan, tanpa padding samping */
+    box-sizing: border-box;
+  }
+
+  /* Kontainer accordion (ini "belakang"/background gradient-nya) */
+  .services-accordion {
+    width: 100%;          /* full lebar layar */
+    max-width: 100%;      /* jangan lewati 100% biar nggak overflow */
+    margin: 0;            /* nempel kiri (section sdh flex-start) */
+    /* ubah lebar: width: 92% (lebih sempit, nempel kiri) / width: 350px (fix) */
+    /* border-top/bottom & background tetap dari base */
+  }
+
+  /* Satu item accordion */
+  .accordion-item {
+    max-height: 84px;           /* tinggi saat tertutup */
+    padding: 16px 18px;
+  }
+  .accordion-item.active {
+    max-height: 560px;          /* tinggi saat terbuka */
+  }
+
+  /* Baris kepala (index + nama + plus) */
+  .accordion-head {
+    height: 52px;
+    gap: 10px;
+  }
+
+  .accordion-index {
+    /* font-size / color dari base */
+  }
+
+  .accordion-name {
+    font-size: 18px;            /* ubah ukuran nama layanan */
+  }
+
+  .accordion-plus {
+    font-size: 18px;            /* ubah ukuran tanda + */
+  }
+
+  /* Isi accordion (desc + gambar) */
+  .accordion-body {
+    flex-direction: column;
+    gap: 12px;
+    align-items: stretch;
+  }
+
+  .accordion-desc {
+    max-width: 100%;
+    right: 0;
+    font-size: 14px;            /* ubah ukuran teks deskripsi */
+  }
+
+  /* Gambar placeholder tiap layanan */
+  .service-image-placeholder {
+    width: 100%;
+    max-width: 100%;            /* lebar penuh di HP */
+    height: auto;
+    aspect-ratio: 16 / 9;
+    margin-top: 8px;
+    /* border-radius: 8px; */
+  }
+  .service-image-placeholder img {
+    /* object-fit: cover; */
+  }
+}

@@ -1,0 +1,97 @@
+/* ============================================================
+   Floating Music Player
+   ============================================================ */
+.music-player {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 20px 12px 12px;
+  background-color: var(--color-card-bg);
+  border: 1px solid var(--color-border-subtle);
+  border-radius: 50px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(10px);
+  transition: opacity 0.6s ease, visibility 0.6s ease, transform 0.6s ease;
+}
+
+.music-player.show {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.player-play-pause {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  flex-shrink: 0;
+  background-color: #ffffff;
+  border-radius: 50%;
+  color: #0D0D0D;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
+}
+
+.player-play-pause:hover {
+  background-color: var(--color-accent-green);
+  color: var(--color-white);
+}
+
+.player-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.player-icon svg {
+  width: 20px;
+  height: 20px;
+  display: block;
+}
+
+.player-play-pause .icon-pause {
+  display: none;
+}
+
+.player-play-pause.is-playing .icon-play {
+  display: none;
+}
+
+.player-play-pause.is-playing .icon-pause {
+  display: flex;
+}
+
+.player-label {
+  font-size: var(--fs-body);
+  font-weight: var(--fw-medium);
+  color: var(--color-white);
+  white-space: nowrap;
+}
+
+@media (max-width: 640px) {
+  .music-player {
+    /* pindah ke atas tengah (hindari transform biar animasi show/hide tetap jalan) */
+    top: 20px;
+    bottom: auto;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    width: max-content;
+    padding: 10px 16px 10px 10px;
+  }
+  .player-play-pause {
+    width: 38px;
+    height: 38px;
+  }
+  .player-label {
+    font-size: 14px;
+  }
+}

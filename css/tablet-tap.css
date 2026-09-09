@@ -1,0 +1,74 @@
+/* ============================================================
+   Tablet — Tap Interactions & Cursor Hide
+   Hanya berlaku di tablet (max-width: 1024px).
+   Tidak mengubah layout/desktop section lain.
+   ============================================================ */
+
+@media (max-width: 1024px) {
+  /* 1. Sembunyikan custom cursor di tablet (sentuh, bukan hover) */
+  * {
+    cursor: auto !important;
+  }
+  .custom-cursor {
+    display: none !important;
+  }
+
+  /* 2a. Elemen KONTROL -> tap-toggle (persist on/off via .is-tap) */
+  .nav-pill.is-tap {
+    color: var(--color-accent-green);
+  }
+  .nav-contact-btn.is-tap {
+    color: var(--color-bg);
+    background-color: var(--color-white);
+    transform: translateY(-2px);
+  }
+  .nav-contact-btn.is-tap .arrow-icon {
+    transform: translate(2px, -2px);
+  }
+  .hero-cta-btn.is-tap {
+    transform: scale(1.05);
+  }
+  .hero-cta-btn.is-tap .hero-cta-arrow {
+    transform: translateX(4px);
+  }
+  .skills-cta-btn.is-tap {
+    transform: scale(1.05);
+  }
+  .skills-cta-btn.is-tap .skills-cta-arrow {
+    transform: translateX(4px);
+  }
+  .contact-pill.is-tap {
+    background-color: var(--color-accent-green);
+    color: var(--color-bg);
+  }
+  .get-in-touch-btn.is-tap {
+    transform: translateY(-4px);
+  }
+  .player-play-pause.is-tap {
+    background-color: var(--color-accent-green);
+    color: var(--color-white);
+  }
+  .go-to-web-btn.visible.is-tap {
+    transform: scale(1.05);
+  }
+
+  /* 2b. Elemen DEKORATIF -> :active saat jari ditekan */
+  .h-letter:active {
+    transform: translateY(-6px) rotate(-5deg);
+    -webkit-transform: translateY(-6px) rotate(-5deg);
+  }
+  .h-letter.is-white:active {
+    color: var(--color-accent-green);
+  }
+  .h-letter.is-green:active {
+    color: var(--color-white);
+  }
+  .service-image-placeholder:active img {
+    transform: scale(1.1);
+  }
+  .drawer-close:active {
+    background-color: var(--color-accent-green);
+    color: var(--color-bg);
+    transform: rotate(90deg);
+  }
+}

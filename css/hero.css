@@ -1,0 +1,361 @@
+/* ============================================================
+   Hero
+   ============================================================ */
+.hero {
+  min-height: calc(100vh / var(--zoom, 1));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0px 24px;
+}
+
+.hero-inner {
+  position: relative;
+  width: 100%;
+  max-width: 1200px;
+  text-align: center;
+  margin-top: -230px;
+}
+
+.hero-headline {
+  font-size: var(--fs-hero);
+  font-weight: var(--fw-bold);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  color: var(--color-white);
+
+}
+
+.text-swap {
+  display: inline-block;
+  color: var(--color-accent-green);
+}
+
+.h-letter {
+  display: inline-block;
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.h-letter:hover {
+  transform: translateY(-6px) rotate(-5deg);
+  -webkit-transform: translateY(-6px) rotate(-5deg);
+  -moz-transform: translateY(-6px) rotate(-5deg);
+  -ms-transform: translateY(-6px) rotate(-5deg);
+  -o-transform: translateY(-6px) rotate(-5deg);
+}
+
+.h-letter.is-white:hover {
+  color: var(--color-accent-green);
+}
+
+.h-letter.is-green:hover {
+  color: var(--color-white);
+}
+
+.subheadline {
+  margin-top: 10px;
+  font-size: var(--fs-subheadline);
+  font-weight: var(--fw-bold);
+  color: #8e8e8e;
+}
+
+.subheadline .char {
+  display: inline-block;
+}
+
+/* Chat bubbles */
+.hero-chat {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 100%;
+  height: 0;
+  z-index: 2;
+}
+
+.chat-bubble {
+  position: absolute;
+  padding: 10px 24px;
+  background-color: #ffffff;
+  border: 1px solid var(--color-border-subtle);
+  border-radius: var(--radius-navbar);
+  font-size: var(--fs-bubble);
+  font-weight: var(--fw-bold);
+  color: #000000;
+  white-space: nowrap;
+  opacity: 0;
+  transform: scale(0);
+  transform-origin: center;
+  animation: bubblePop 8s linear infinite;
+  -webkit-animation: bubblePop 8s linear infinite;
+  -webkit-transform: scale(0);
+  -moz-transform: scale(0);
+  -ms-transform: scale(0);
+  -o-transform: scale(0);
+}
+
+.chat-bubble-1 {
+  right: 850px;
+  top: 300px;
+  animation-delay: 1.5s;
+}
+
+.chat-bubble-2 {
+  right: 405px;
+  top: 200px;
+  animation-delay: 4s;
+}
+
+@keyframes bubblePop {
+  0% {
+    transform: scale(0);
+    opacity: 0;
+  }
+  5% {
+    transform: scale(1.1);
+    opacity: 1;
+  }
+  7% {
+    transform: scale(0.95);
+    opacity: 1;
+  }
+  9% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  37.5% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  40% {
+    transform: scale(1);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(0);
+    opacity: 0;
+  }
+}
+
+/* ============================================================
+   Hero — Person Image (posisi mudah diatur)
+   ============================================================ */
+.hero-person {
+  /* Posisi relatif terhadap .hero-inner (position: relative) */
+  position: absolute;
+  bottom: -400px;        /* jarak dari bawah hero-inner */
+  left: 38%;             /* mulai dari tengah horizontal */
+  transform: translateX(-50%); /* geser balik 50% lebar = rata tengah */
+  -webkit-transform: translateX(-50%);
+  -moz-transform: translateX(-50%);
+  -ms-transform: translateX(-50%);
+  -o-transform: translateX(-50%);
+  z-index: 1;            /* di bawah chat bubble (z 2), di atas bg */
+  pointer-events: none;  /* tidak menghalangi klik teks */
+}
+
+.hero-person-img {
+  display: block;
+  max-width: 100%;
+  height: auto;         /* tinggi ikut aspect ratio asli, tidak dipotong paksa */
+  max-height: calc(50vh / var(--zoom, 1));     /* batasi tinggi, sesuaikan sesuka hati */
+  /* fade bawah ke transparan biar menyatu dengan background */
+  -webkit-mask-image: linear-gradient(to bottom, black 70%, transparent 100%);
+  mask-image: linear-gradient(to bottom, black 70%, transparent 100%);
+}
+
+/* ============================================================
+   Hero — CTA (Let's create + Let's Talk) sisi kanan
+   ============================================================ */
+.hero-cta {
+  position: absolute;
+  right: 50px;
+  top: 300px;           /* jarak dari atas hero-inner, sejajarkan dengan bubble */
+  max-width: 400px;
+  text-align: left;
+  z-index: 2;
+}
+
+.hero-cta-text {
+  font-size: var(--fs-subheadline);  /* 40px */
+  font-weight: var(--fw-medium);
+  color: var(--color-white);
+  line-height: 1.2;
+}
+
+.hero-cta-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 40px;
+  padding: 14px 24px;
+  background-color: var(--color-accent-green);
+  color: var(--color-white);
+  font-weight: var(--fw-bold);
+  font-size: var(--fs-body);
+  border-radius: var(--radius-button);
+  transition: transform 0.25s ease;
+}
+
+.hero-cta-btn:hover {
+  transform: scale(1.05);   /* sedikit perbesar */
+}
+
+.hero-cta-arrow {
+  font-size: 1.2em;
+  line-height: 1;
+  display: inline-block;
+  transition: transform 0.2s ease;
+}
+
+.hero-cta-btn:hover .hero-cta-arrow {
+  transform: translateX(4px);   /* geser ke kanan mengikuti arah panah */
+}
+
+/* ============================================================
+   Tablet Portrait (~820px)
+   Aturan khusus tablet — tidak mengubah base desktop 1280.
+   ============================================================ */
+@media (max-width: 1024px) {
+  .hero {
+    position: relative;   /* paksa anak absolut nyangkut ke canvas 820, bukan viewport */
+  }
+  .hero-inner {
+    margin-top: -200px;
+    right: 0;
+  }
+
+  /* headline — tablet (canvas 820, ubah right/top/margin buat geser) */
+  .hero-headline {
+    position: relative;   /* biar bisa diatur right/top/left */
+    /* contoh: right: 0; top: 0; */
+    top: -100px;
+  }
+
+  /* subheadline — tablet (canvas 820, ubah right/top/margin buat geser) */
+  .subheadline {
+    position: relative;   /* biar bisa diatur right/top/left */
+    /* contoh: right: 0; top: 0; */
+    top: -90px;
+  }
+
+  /* bubble ditampilkan di tablet */
+  .hero-chat {
+    display: block;
+  }
+
+  /* posisi bubble — tablet (canvas 820, ubah right/top sesuai keinginan) */
+  .chat-bubble-1 {
+    right: 490px;
+    top: 220px;
+  }
+  .chat-bubble-2 {
+    right: 50px;
+    top: 150px;
+  }
+
+  /* sembunyikan teks CTA di tablet */
+  .hero-cta-text {
+    display: none;
+  }
+
+  .hero-cta {
+    right: 300px;
+    top: 400px;
+    max-width: 360px;
+  }
+
+  .hero-person {
+    left: 50%;
+    bottom: -300px;
+  }
+
+  .hero-person-img {
+    max-height: 32vh;
+  }
+}
+
+/* ============================================================
+   Mobile (<=640px) — canvas 390, scale-to-fit
+   Aturan khusus HP — TIDAK mengubah desktop (1280) & tablet (820).
+   Semua nilai bisa diatur manual di bawah ini.
+   ============================================================ */
+@media (max-width: 640px) {
+  .hero {
+    padding: 0 50px;
+    margin-top: -250px;
+  }
+
+  .hero-inner {
+    margin-top: -150px;
+  }
+
+  .hero-headline {
+    max-width: 300px;
+    font-size: 40px;
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+  }
+
+  .subheadline {
+    margin-top: 8px;
+    font-size: 20px;
+    text-align: center;
+    width: 115%;
+    right: 20px;
+  }
+
+  .hero-chat {
+    display: block;
+  }
+  .chat-bubble {
+    padding: 8px 16px;
+    font-size: 12px;
+  }
+  .chat-bubble-1 {
+    right: 210px;
+    top: 200px;
+  }
+  .chat-bubble-2 {
+    right: -50px;
+    top: 160px;
+  }
+
+  .hero-cta {
+    position: absolute;
+    left: 85px;
+    transform: translateX(-50%);
+    top: 300px;
+    /*ubahbuatgeserCTA—tidakmempengaruhigambar*/max-width: 100%;
+    text-align: center;
+    -webkit-transform: translateX(-50%);
+    -moz-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    -o-transform: translateX(-50%);
+}
+  .hero-cta-text {
+    display: none;
+  }
+  .hero-cta-btn {
+    padding: 12px 20px;
+    font-size: 14px;
+    margin-top: 70px;
+    white-space: nowrap;
+    flex-wrap: nowrap;
+  }
+  .hero-cta-arrow {
+    font-size: 1.1em;
+  }
+
+  .hero-person {
+    /* right: 100px; */
+    bottom: -200px;
+  }
+  .hero-person-img {
+    position: relative;   /* biar left/right langsung geser gambar */
+    max-height: 55vh;     /* naikkan buat perbesar tinggi */
+    width: 170%;          /* perbesar lebar gambar */
+    max-width: none;      /* bebaskan batas lebar base (100%) */
+    right: 55px;
+  }
+}

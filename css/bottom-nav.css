@@ -1,0 +1,70 @@
+/* ============================================================
+   Bottom Navigation — Mobile only (<=640px)
+   ============================================================ */
+.bottom-nav {
+  display: none;
+}
+
+@media (max-width: 640px) {
+  .bottom-nav {
+    position: fixed;
+    left: 50%;
+    bottom: 0;
+    transform: translateX(-50%) scale(1.2);   /* center horizontal + perbesar 20% */
+    z-index: 60;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 60px;                     /* jarak antar ikon */
+    margin-bottom: 18px;           /* jarak dari tepi bawah layar */
+    padding: 12px 20px;            /* 12px vertikal, 20px horizontal */
+    background-color: rgba(20, 20, 20, 0.85);
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);    /* glassmorphism */
+    border-radius: 9999px;         /* pill / rounded-full */
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45);  /* efek melayang */
+    width: auto;                   /* TIDAK full 100%, ikut isi */
+  }
+
+  .bottom-nav a {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+    color: rgba(255, 255, 255, 0.6);
+    text-decoration: none;
+    position: relative;
+  }
+
+  .bottom-nav a svg {
+    width: 26px;
+    height: 26px;
+    stroke: currentColor;
+    stroke-width: 2;
+    fill: none;
+    display: block;
+  }
+
+  .bottom-nav a span {
+    font-size: 10px;
+    font-weight: var(--fw-medium);
+    line-height: 1;
+  }
+
+  /* indikator aktif: lingkaran kecil di belakang ikon + warna nyala */
+  .bottom-nav a.active {
+    color: #22c55e;
+  }
+  .bottom-nav a.active::before {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: -3px;
+    transform: translateX(-50%);
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background-color: rgba(34, 197, 94, 0.15);
+    z-index: -1;
+  }
+}
