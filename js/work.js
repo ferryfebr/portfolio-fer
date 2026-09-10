@@ -44,8 +44,8 @@ function pinnedCardStack() {
 
   const mm = gsap.matchMedia();
 
-  /* ---------- Desktop & Tablet: GSAP pin (fixed) — tetap seperti sebelumnya ---------- */
-  mm.add('(min-width: 641px)', () => {
+  /* ---------- Desktop (>=1025px): GSAP pin (fixed) — tetap seperti sebelumnya, tidak diubah ---------- */
+  mm.add('(min-width: 1025px)', () => {
     const HOLD = 0;
     const TRANSITION = 2.2;
     const EXIT_DELAY = 0.5;
@@ -69,6 +69,60 @@ function pinnedCardStack() {
     buildTimeline(tl, cards, HOLD, TRANSITION, EXIT_DELAY);
 
     return () => {
+      tl.scrollTrigger && tl.scrollTrigger.kill();
+      tl.kill();
+    };
+  });
+
+  /* ---------- Tablet (641–1024px): GSAP pin, Work di-render 1:1 ----------
+     Root <html> punya zoom (sistem scaling). Kalau section Work ikut ter-zoom,
+     koordinat pin GSAP (fixed/transform) melenceng → Mini naik, Pro turun,
+     cuma iPad Air (zoom≈1) yang pas. Maka kita NETRALKAN zoom khusus di
+     section Work: set --zoom=1 (biar calc(100vh/--zoom)=100vh) lalu zoom lokal
+     1/rootZoom (membatalkan zoom root). Hasil: section 1:1 dgn viewport →
+     pin 'fixed' jalan persis seperti iPad Air. Direset saat keluar breakpoint. ---------- */
+  mm.add('(min-width: 641px) and (max-width: 1024px)', () => {
+    const HOLD = 0;
+    const TRANSITION = 2.2;
+    const EXIT_DELAY = 0.5;
+    const SCROLL_PER_UNIT = 0.7;
+    const distance = totalCards * (HOLD + TRANSITION) * SCROLL_PER_UNIT * 100;
+
+    // netralkan zoom root di SELURUH subtree Work (.work-stack-pin + section + card
+    // + pin-spacer GSAP). Kalau cuma section yg di-1:1, wrapper pembungkus tetap
+    // ter-zoom → pin-spacer ikut diskalakan → Mini gap nyusut (numpuk), Pro gap
+    // membesar. Biar sama rata dgn iPad Air (zoom=1), seluruh Work di-render 1:1.
+    var rootZoom = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--zoom')) || 1;
+    if (pinWrap) {
+      pinWrap.style.setProperty('--zoom', 1);
+      pinWrap.style.zoom = 1 / rootZoom;
+    }
+
+    if (pinWrap) pinWrap.style.height = '';
+
+    const tl = gsap.timeline({
+      defaults: { ease: 'none' },
+      scrollTrigger: {
+        trigger: section,
+        start: 'top top',
+        end: () => '+=' + distance + '%',
+        pin: true,
+        // zoom root < 1 (device < 820px, mis. iPad Mini) => wrapper di-upscale oleh
+        // zoom lokal => jadi containing block untuk position:fixed => pin kolaps.
+        // Pakai 'transform' (GSAP-recommended untuk ancestor ber-zoom). Device >= 820px
+        // (iPad Air/Pro) tetap 'fixed' karena sudah terbukti perfect.
+        pinType: (rootZoom < 1) ? 'transform' : 'fixed',
+        scrub: 0.5,
+        anticipatePin: 1,
+      },
+    });
+    buildTimeline(tl, cards, HOLD, TRANSITION, EXIT_DELAY);
+
+    return () => {
+      if (pinWrap) {
+        pinWrap.style.zoom = '';
+        pinWrap.style.removeProperty('--zoom');
+      }
       tl.scrollTrigger && tl.scrollTrigger.kill();
       tl.kill();
     };
