@@ -15,7 +15,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 60px;                     /* jarak antar ikon */
+    gap: 45px;                     /* jarak antar ikon */
     margin-bottom: 18px;           /* jarak dari tepi bawah layar */
     padding: 12px 20px;            /* 12px vertikal, 20px horizontal */
     background-color: rgba(20, 20, 20, 0.85);

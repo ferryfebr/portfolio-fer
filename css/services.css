@@ -205,11 +205,11 @@
 @media (max-width: 640px) {
   /* Section pembungkus */
   .services-section {
-    padding: 0px 0;            /* ubah jarak atas/bawah */
-    margin-top: -200px;         /* geser ke atas biar nyambung section sebelumnya */
-    justify-content: flex-start; /* nempel kiri: lebar nambah ke kanan, kiri nggak kepotong */
-    /* min-height: auto; */      /* aktifkan kalau mau lepas 1 layar penuh */
-    
+    padding: 40px 0 70px;       /* jarak dalam + ruang bawah antar section */
+    margin-top: 0;              /* lepas tumpang tindih dengan section atas */
+    margin-bottom: 70px;
+    justify-content: flex-start;
+    overflow: visible;
   }
 
   .services-inner {

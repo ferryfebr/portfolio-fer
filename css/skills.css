@@ -228,10 +228,10 @@
   /* Section pembungkus */
   .skills-section {
     min-height: auto;          /* lepas paksaan 1 layar penuh */
-    margin-top: -300px;        /* naikkan nilai negatif = lebih naik */
-    padding: 24px 0;           /* horizontal 0 biar baris kartu full-bleed */
-    overflow-x: clip;          /* cegah page geser kiri/kanan */
-    /* gap / justify bisa diatur di sini */
+    margin-top: 0;             /* lepas tumpang tindih dengan Hero */
+    padding: 40px 0 70px;
+    margin-bottom: 70px;
+    overflow-x: clip;          /* cegah page geser kiri/kanan (marquee) */
   }
 
   /* Kontainer dalam */

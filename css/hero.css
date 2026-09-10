@@ -282,12 +282,13 @@
    ============================================================ */
 @media (max-width: 640px) {
   .hero {
-    padding: 0 50px;
-    margin-top: -250px;
+    padding: 0px 24px 40px;   /* padding-top cukup biar gak kepotong notch/player */
+    margin-top: 0;             /* lepas hero dari atas viewport (konten naik ke atas) */
+    overflow: visible;
   }
 
   .hero-inner {
-    margin-top: -150px;
+    margin-top: 0;
   }
 
   .hero-headline {
@@ -295,14 +296,15 @@
     font-size: 40px;
     line-height: 1.1;
     letter-spacing: -0.01em;
+    right: -20px;
   }
 
   .subheadline {
     margin-top: 8px;
     font-size: 20px;
     text-align: center;
-    width: 115%;
-    right: 20px;
+    width: 99%;
+    right: 0px;
   }
 
   .hero-chat {
@@ -310,20 +312,20 @@
   }
   .chat-bubble {
     padding: 8px 16px;
-    font-size: 12px;
+    font-size: 10px;
   }
   .chat-bubble-1 {
-    right: 210px;
+    right: 240px;
     top: 200px;
   }
   .chat-bubble-2 {
-    right: -50px;
+    right: -10px;
     top: 160px;
   }
 
   .hero-cta {
     position: absolute;
-    left: 85px;
+    left: 110px;
     transform: translateX(-50%);
     top: 300px;
     /*ubahbuatgeserCTA—tidakmempengaruhigambar*/max-width: 100%;
@@ -354,8 +356,8 @@
   .hero-person-img {
     position: relative;   /* biar left/right langsung geser gambar */
     max-height: 55vh;     /* naikkan buat perbesar tinggi */
-    width: 170%;          /* perbesar lebar gambar */
+    width: 150%;          /* perbesar lebar gambar */
     max-width: none;      /* bebaskan batas lebar base (100%) */
-    right: 55px;
+    right: 50px;
   }
 }

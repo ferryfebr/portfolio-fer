@@ -66,7 +66,7 @@ function servicesFadeIn() {
     ease: 'power2.out',
     scrollTrigger: {
       trigger: section,
-      start: 'top 50',
+      start: 'top 100',
     },
   });
 }

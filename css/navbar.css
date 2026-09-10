@@ -128,7 +128,8 @@
     left: 50%;
     right: auto;
     transform: translateX(-50%);
-    width: 390px;          /* canvas mobile — ubah kalau ref lo beda */
+    width: 100%;
+    max-width: 390px;      /* canvas mobile — ubah kalau ref lo beda */
     padding: 12px;
     margin-top: 8px;
   }
