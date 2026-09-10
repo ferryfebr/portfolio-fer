@@ -18,7 +18,7 @@
   <link rel="stylesheet" href="css/contact.css">
   <link rel="stylesheet" href="css/loading.css">
   <link rel="stylesheet" href="css/player.css">
-  <link rel="stylesheet" href="css/rotate.css">
+
   <link rel="stylesheet" href="css/bottom-nav.css">
   <link rel="stylesheet" href="css/tablet-tap.css">
 
@@ -388,29 +388,6 @@
   </main>
 
   <div class="custom-cursor" id="customCursor"><img src="asset/cursor.webp" alt=""></div>
-
-  <!-- Rotate prompt (tablet portrait only) -->
-  <div class="rotate-overlay" aria-hidden="true">
-    <div class="rotate-overlay-inner">
-      <div class="rotate-icon" aria-hidden="true">
-        <svg viewBox="0 0 24 24">
-          <rect x="7" y="2" width="10" height="20" rx="2"></rect>
-          <line x1="11" y1="18.5" x2="13" y2="18.5"></line>
-          <path d="M2 12a10 10 0 0 1 10-10"></path>
-          <polyline points="2 5 2 9 6 9"></polyline>
-        </svg>
-      </div>
-      <p class="rotate-title">Putar perangkat ke mode landscape</p>
-      <p class="rotate-sub">Web ini nyaman dibuka secara mendatar.</p>
-    </div>
-  </div>
-
-  <script>
-    if (location.search.indexOf('rotate=1') !== -1) {
-      var ro = document.querySelector('.rotate-overlay');
-      if (ro) ro.classList.add('force-show');
-    }
-  </script>
 
   <!-- Bottom Navigation (mobile) -->
   <nav class="bottom-nav" aria-label="Navigasi bawah">
