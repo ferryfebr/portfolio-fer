@@ -12,12 +12,20 @@ function getAudio() {
   if (!audio) {
     audio = new Audio('asset/audio/kabar-bahagia.mp3');
     audio.loop = true;
-    audio.preload = 'none';
+    audio.preload = 'auto';
     audio.addEventListener('timeupdate', () => {
       if (!audio.paused && audio.currentTime > 0 && audio.currentTime < SKIP_START_SECONDS) {
         audio.currentTime = SKIP_START_SECONDS;
       }
     });
+    const syncIcon = () => {
+      if (audio.paused) playPauseBtn.classList.remove('is-playing');
+      else playPauseBtn.classList.add('is-playing');
+    };
+    audio.addEventListener('play', syncIcon);
+    audio.addEventListener('pause', syncIcon);
+    audio.addEventListener('ended', syncIcon);
+    audio.addEventListener('error', syncIcon);
   }
   return audio;
 }
