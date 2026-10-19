@@ -31,6 +31,7 @@ function accordionHover() {
   let timer = null;
 
   function open(item) {
+    if (item.classList.contains('active')) return;
     items.forEach((it) => it.classList.remove('active'));
     item.classList.add('active');
   }
@@ -38,6 +39,7 @@ function accordionHover() {
   items.forEach((item) => {
     item.addEventListener('mouseenter', () => {
       clearTimeout(timer);
+      if (item.classList.contains('active')) return;
       timer = setTimeout(() => open(item), 150);
     });
   });
